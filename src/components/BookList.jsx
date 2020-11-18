@@ -2,7 +2,7 @@ import React from "react"
 import App from "../App.js"
 import { Container, Row, Col, Form } from "react-bootstrap"
 import fantasyBooks from "../data/fantasy.json"
-import SingleBook from "./SingleBook"
+import SingleBook from "./SingleBookAdvanced"
 
 class BookList extends React.Component {
 	constructor(props) {
