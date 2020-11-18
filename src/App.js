@@ -5,6 +5,7 @@ import WarningSign from "./components/WarningSign"
 import MyBadge from "./components/MyBadge"
 import SingleBook from "./components/SingleBook"
 import Books from "./data/fantasy.json"
+import BookList from "./components/BookList"
 
 const book = Books[0]
 class App extends React.Component {
@@ -13,7 +14,8 @@ class App extends React.Component {
 			<div className="App">
 				<WarningSign text="Error"> </WarningSign>
 				<MyBadge text="idk" color="primary"></MyBadge>
-				<SingleBook book={book}></SingleBook>
+        
+				<BookList BookList={BookList} />
 			</div>
 		)
 	}
