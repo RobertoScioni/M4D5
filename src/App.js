@@ -14,8 +14,8 @@ class App extends React.Component {
 			<div className="App">
 				<WarningSign text="Error"> </WarningSign>
 				<MyBadge text="idk" color="primary"></MyBadge>
-        
-				<BookList BookList={BookList} />
+
+				<BookList BookList={Books} />
 			</div>
 		)
 	}
