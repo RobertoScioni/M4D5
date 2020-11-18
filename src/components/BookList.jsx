@@ -38,7 +38,9 @@ class BookList extends React.Component {
 				<Container>
 					<Row>
 						{this.state.books.map((book, index) => (
-							<SingleBook book={book} />
+							<Col md={4}>
+								<SingleBook book={book} />
+							</Col>
 						))}
 					</Row>
 				</Container>

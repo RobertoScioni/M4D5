@@ -1,6 +1,6 @@
 import React from "react"
 import App from "../App.js"
-import { Card } from "react-bootstrap"
+import { Badge, Card } from "react-bootstrap"
 
 class SingleBook extends React.Component {
 	constructor(props) {
@@ -10,7 +10,7 @@ class SingleBook extends React.Component {
 	render = (props) => {
 		return (
 			<Card
-				style={{ width: "18rem" }}
+				bg={this.state.selected ? "primary" : "light"}
 				onClick={() => {
 					this.setState({ selected: !this.state.selected })
 				}}
@@ -19,6 +19,9 @@ class SingleBook extends React.Component {
 				<Card.Body>
 					<Card.Title>{this.props.book.title}</Card.Title>
 				</Card.Body>
+				<Card.Footer>
+					<Badge variant="success">{this.props.book.price} $$</Badge>
+				</Card.Footer>
 			</Card>
 		)
 	}
