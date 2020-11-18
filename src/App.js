@@ -3,11 +3,11 @@ import "./App.css"
 import WarningSign from "./components/WarningSign"
 
 class App extends React.Component {
-	render() {
+	render = () => {
 		return (
-			<>
-				<WarningSign address="{text:'ERROR'}" />
-			</>
+			<div className="App">
+				<WarningSign text="Error"> </WarningSign>
+			</div>
 		)
 	}
 }
