@@ -17,21 +17,22 @@ class BookList extends React.Component {
 					<Form.Control
 						type="text"
 						onChange={(event) => {
-							if (event.target.value.lenght < this.state.queryL) {
-								this.state = {
+							if (event.target.value.length < this.state.queryL) {
+								this.setState({
 									books: this.props.BookList,
-									queryL: event.target.value.lenght,
-								}
+									queryL: event.target.value.length,
+								})
+							} else {
+								const results = this.state.books.filter((book) =>
+									book.title
+										.toLowerCase()
+										.includes(event.target.value.toLowerCase())
+								)
+								this.setState({
+									books: results,
+									queryL: event.target.value.length,
+								})
 							}
-							const results = this.state.books.filter((book) =>
-								book.title
-									.toLowerCase()
-									.includes(event.target.value.toLowerCase())
-							)
-							this.setState({
-								books: results,
-								queryL: event.target.value.lenght,
-							})
 						}}
 					></Form.Control>
 				</Form>
