@@ -3,7 +3,6 @@ import "./App.css"
 import "bootstrap/dist/css/bootstrap.min.css"
 import WarningSign from "./components/WarningSign"
 import MyBadge from "./components/MyBadge"
-import SingleBook from "./components/SingleBookAdvanced"
 import Books from "./data/fantasy.json"
 import BookList from "./components/BookList"
 
