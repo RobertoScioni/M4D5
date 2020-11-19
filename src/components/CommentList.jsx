@@ -19,7 +19,7 @@ class CommentList extends React.Component {
 				{
 					headers: {
 						Authorization:
-							"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmI2NmUzNTk4MzViMDAwMTc1ODRlZWQiLCJpYXQiOjE2MDU3OTY1MjYsImV4cCI6MTYwNzAwNjEyNn0.-oGCfBFA0yIwQKR-zLkDkfxQ2fcI1NWOzmpi9KACWQA",
+							"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmI2NmUzNTk4MzViMDAwMTc1ODRlZWQiLCJpYXQiOjE2MDU4MjA1NjUsImV4cCI6MTYwNzAzMDE2NX0.mgz_c-3UHAribI3ogIYDAyR7XqpT7ZWCzSPHwrhU19w",
 					},
 					method: "GET",
 				}
@@ -36,10 +36,9 @@ class CommentList extends React.Component {
 				<p>Comments</p>
 				<ListGroup>
 					{Array.from(this.state.comments).map((comment) => (
-						<Comment comment={comment}></Comment>
+						<Comment key={comment._id} comment={comment}></Comment>
 					))}
 				</ListGroup>
-				<AddComment asin={this.props.asin}></AddComment>
 			</>
 		)
 	}

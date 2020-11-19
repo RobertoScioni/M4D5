@@ -1,5 +1,4 @@
 import React from "react"
-import App from "../App.js"
 import { Badge, Card, Modal } from "react-bootstrap"
 import CommentArea from "./CommentArea.jsx"
 
@@ -25,11 +24,13 @@ class SingleBook extends React.Component {
 					keyboard={false}
 					backdrop="static"
 				>
-					<Modal.Header>
+					<Modal.Header closeButton>
 						<Modal.Title>Modal title</Modal.Title>
 					</Modal.Header>
-
-					<CommentArea book={this.props.book}></CommentArea>
+					<Modal.Body>
+						<CommentArea book={this.props.book}></CommentArea>
+					</Modal.Body>
+					<Modal.Footer></Modal.Footer>
 				</Modal>
 			</Card>
 		)

@@ -2,30 +2,41 @@ import React from "react"
 import { Form, FormControl, Button } from "react-bootstrap"
 
 class AddComment extends React.Component {
-	state = {
-		comment: {
-			comment: "",
-			number: 0,
-			elementId: this.props.asin,
-		},
-		loadinf: false,
+	constructor(props) {
+		super(props)
+		this.state = {
+			comment: {
+				comment: "",
+				rate: "3",
+				elementId: this.props.asin,
+			},
+			loading: false,
+		}
 	}
 
 	sendComment = async (event) => {
+		console.log("i'm tring to post")
 		try {
-			await fetch(
-				"https://striveschool-api.herokuapp.com/api/comments/" +
-					this.props.asin,
-				{
-					headers: {
-						Authorization:
-							"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmI2NmUzNTk4MzViMDAwMTc1ODRlZWQiLCJpYXQiOjE2MDU3OTY1MjYsImV4cCI6MTYwNzAwNjEyNn0.-oGCfBFA0yIwQKR-zLkDkfxQ2fcI1NWOzmpi9KACWQA",
-						"Content-Type": "application/json",
-					},
-					method: "POST",
-					body: JSON.stringify(this.state.comment),
-				}
-			)
+			let body = JSON.stringify(this.state.comment)
+			let ar = {
+				headers: {
+					Authorization:
+						"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmI2NmUzNTk4MzViMDAwMTc1ODRlZWQiLCJpYXQiOjE2MDU4MjA1NjUsImV4cCI6MTYwNzAzMDE2NX0.mgz_c-3UHAribI3ogIYDAyR7XqpT7ZWCzSPHwrhU19w",
+					"Content-Type": "application/json",
+				},
+				method: "POST",
+				body: body,
+			}
+			alert(JSON.stringify(ar))
+			await fetch("https://striveschool-api.herokuapp.com/api/comments/", {
+				headers: new Headers({
+					Authorization:
+						"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmI2NmUzNTk4MzViMDAwMTc1ODRlZWQiLCJpYXQiOjE2MDU4MjA1NjUsImV4cCI6MTYwNzAzMDE2NX0.mgz_c-3UHAribI3ogIYDAyR7XqpT7ZWCzSPHwrhU19w",
+					"Content-Type": "application/json",
+				}),
+				method: "POST",
+				body: body,
+			})
 		} catch (error) {
 			console.log("error")
 		}
@@ -35,27 +46,22 @@ class AddComment extends React.Component {
 		try {
 			let comment = { ...this.state.comment }
 			let currentField = event.target.name
-			comment[currentField] = event.currentField.value
+			comment[currentField] = event.target.value
 			this.setState({ comment })
 		} catch (error) {
-			console.log(error)
+			alert("error", error)
 		}
 	}
 
 	render = (props) => {
 		return (
-			<Form>
+			<Form onSubmit={this.sendComment}>
 				<FormControl
 					type="text"
 					name="comment"
 					onChange={this.updateComment}
 				></FormControl>
-				<FormControl
-					type="number"
-					name="comment"
-					onChange={this.updateComment}
-				></FormControl>
-				<Button onClick={this.sendComment}></Button>
+				<Button type="submit"> Post it</Button>
 			</Form>
 		)
 	}

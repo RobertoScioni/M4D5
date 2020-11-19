@@ -1,7 +1,5 @@
 import React from "react"
-import App from "../App.js"
 import { Container, Row, Col, Form } from "react-bootstrap"
-import fantasyBooks from "../data/fantasy.json"
 import SingleBook from "./SingleBookAdvanced"
 
 class BookList extends React.Component {
@@ -38,7 +36,7 @@ class BookList extends React.Component {
 				<Container>
 					<Row>
 						{this.state.books.map((book, index) => (
-							<Col md={4}>
+							<Col key={book.asin} md={4}>
 								<SingleBook book={book} />
 							</Col>
 						))}
