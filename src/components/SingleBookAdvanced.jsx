@@ -19,7 +19,16 @@ class SingleBook extends React.Component {
 				<Card.Footer>
 					<Badge variant="success">{this.props.book.price} $$</Badge>
 				</Card.Footer>
-				<Modal show={this.state.selected} onHide={this.toggleModal}>
+				<Modal
+					show={this.state.selected}
+					onHide={this.toggleModal}
+					keyboard={false}
+					backdrop="static"
+				>
+					<Modal.Header>
+						<Modal.Title>Modal title</Modal.Title>
+					</Modal.Header>
+
 					<CommentArea book={this.props.book}></CommentArea>
 				</Modal>
 			</Card>

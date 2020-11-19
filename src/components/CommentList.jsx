@@ -39,7 +39,7 @@ class CommentList extends React.Component {
 						<Comment comment={comment}></Comment>
 					))}
 				</ListGroup>
-				<AddComment></AddComment>
+				<AddComment asin={this.props.asin}></AddComment>
 			</>
 		)
 	}
