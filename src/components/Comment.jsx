@@ -5,7 +5,7 @@ const handleDelete = async (id) => {
 	try {
 		alert("deleting")
 		let comments = await fetch(
-			"https://striveschool-api.herokuapp.com/api/comments/_id=" + id,
+			"https://striveschool-api.herokuapp.com/api/comments/" + id,
 			{
 				headers: {
 					Authorization:
@@ -24,7 +24,13 @@ const handleDelete = async (id) => {
 const Comment = (props) => (
 	<ListGroupItem key={props.comment.asin}>
 		<p>{props.comment.comment}</p>
-		<Button variant="danger" onClick={() => handleDelete(props.comment._id)}>
+		<Button
+			variant="danger"
+			onClick={(event) => {
+				event.preventDefault()
+				handleDelete(props.comment._id)
+			}}
+		>
 			Delete
 		</Button>
 	</ListGroupItem>

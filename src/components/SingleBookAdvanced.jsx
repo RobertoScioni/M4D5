@@ -1,16 +1,15 @@
 import React from "react"
-import { Badge, Card, Modal } from "react-bootstrap"
-import CommentArea from "./CommentArea.jsx"
+import { Badge, Card } from "react-bootstrap"
 
 class SingleBook extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = { selected: false }
 	}
-	toggleModal = () => this.setState({ selected: !this.state.selected })
+	toggleForm = () => this.setState({ selected: !this.state.selected })
 	render = (props) => {
 		return (
-			<Card onClick={this.toggleModal}>
+			<Card>
 				<Card.Img variant="top" src={this.props.book.img} />
 				<Card.Body>
 					<Card.Title>{this.props.book.title}</Card.Title>
@@ -18,20 +17,6 @@ class SingleBook extends React.Component {
 				<Card.Footer>
 					<Badge variant="success">{this.props.book.price} $$</Badge>
 				</Card.Footer>
-				<Modal
-					show={this.state.selected}
-					onHide={this.toggleModal}
-					keyboard={false}
-					backdrop="static"
-				>
-					<Modal.Header closeButton>
-						<Modal.Title>Modal title</Modal.Title>
-					</Modal.Header>
-					<Modal.Body>
-						<CommentArea book={this.props.book}></CommentArea>
-					</Modal.Body>
-					<Modal.Footer></Modal.Footer>
-				</Modal>
 			</Card>
 		)
 	}

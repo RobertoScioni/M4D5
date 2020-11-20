@@ -1,13 +1,15 @@
 import React from "react"
-import { Container, Row, Col, Form } from "react-bootstrap"
+import { Container, Row, Col, Form, Modal } from "react-bootstrap"
 import SingleBook from "./SingleBookAdvanced"
+import CommentArea from "./CommentArea.jsx"
 
 class BookList extends React.Component {
 	constructor(props) {
 		super(props)
-		this.state = { books: props.BookList, queryL: 0 }
+		this.state = { books: props.BookList, queryL: 0, Selected: false }
 	}
-
+	HandleSelection = (book) => this.setState({ Selected: book })
+	HideModal = () => this.setState({ Selected: false })
 	render = (props) => {
 		return (
 			<>
@@ -36,12 +38,31 @@ class BookList extends React.Component {
 				<Container>
 					<Row>
 						{this.state.books.map((book, index) => (
-							<Col key={book.asin} md={4}>
+							<Col
+								id={book.asin}
+								key={book.asin}
+								md={4}
+								onClick={() => this.HandleSelection(book)}
+							>
 								<SingleBook book={book} />
 							</Col>
 						))}
 					</Row>
 				</Container>
+				<Modal
+					show={this.state.Selected}
+					onHide={this.HideModal}
+					keyboard={false}
+					backdrop="static"
+				>
+					<Modal.Header closeButton>
+						<Modal.Title>{this.state.Selected.title}</Modal.Title>
+					</Modal.Header>
+					<Modal.Body>
+						<CommentArea book={this.state.Selected}></CommentArea>
+					</Modal.Body>
+					<Modal.Footer></Modal.Footer>
+				</Modal>
 			</>
 		)
 	}

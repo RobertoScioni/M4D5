@@ -15,19 +15,9 @@ class AddComment extends React.Component {
 	}
 
 	sendComment = async (event) => {
-		console.log("i'm tring to post")
+		event.preventDefault()
 		try {
 			let body = JSON.stringify(this.state.comment)
-			let ar = {
-				headers: {
-					Authorization:
-						"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmI2NmUzNTk4MzViMDAwMTc1ODRlZWQiLCJpYXQiOjE2MDU4MjA1NjUsImV4cCI6MTYwNzAzMDE2NX0.mgz_c-3UHAribI3ogIYDAyR7XqpT7ZWCzSPHwrhU19w",
-					"Content-Type": "application/json",
-				},
-				method: "POST",
-				body: body,
-			}
-			alert(JSON.stringify(ar))
 			await fetch("https://striveschool-api.herokuapp.com/api/comments/", {
 				headers: new Headers({
 					Authorization:
@@ -40,17 +30,14 @@ class AddComment extends React.Component {
 		} catch (error) {
 			console.log("error")
 		}
+		this.props.reload()
 	}
 
 	updateComment = (event) => {
-		try {
-			let comment = { ...this.state.comment }
-			let currentField = event.target.name
-			comment[currentField] = event.target.value
-			this.setState({ comment })
-		} catch (error) {
-			alert("error", error)
-		}
+		let comment = { ...this.state.comment }
+		let currentField = event.target.name
+		comment[currentField] = event.target.value
+		this.setState({ comment })
 	}
 
 	render = (props) => {
